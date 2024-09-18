@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c356cc6d4829491f994c2ec0f5d356c4" Name="Diagram1">
+        <EntityTypeShape EntityType="medstahModel.Client" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Lechenia" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Oplati" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Oslognenia" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Otcheta" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.PolisStrahovania" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Polzovateli" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Roli" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Sotrydniki" Width="1.5" PointX="3.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Status" Width="1.5" PointX="3.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.StatusOplati" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.StrahSlychai" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.YchresdeniaLecheia" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.Yslugi" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="medstahModel.YslugiStrahSlysay" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="medstahModel.FK_Полисы_Страхования_Клиенты" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Лечение_Лечебные_Учреждения" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Лечение_Страховые_Случаи" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Осложнения_Лечение" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Bygalteri_StatusOplati" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Bygalteri_StrahSlychai" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Otcheta_Yslugi" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_StrahSlychai_PolisStrahovania" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Polzovateli_Roli" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_Sotrydniki_Polzovateli" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_StrahSlychai_Sotrydniki" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_StrahSlychai_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_StrahSlychai_StatusOplati" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_YslugiStrahSlysay_StrahSlychai" ManuallyRouted="false" />
+        <AssociationConnector Association="medstahModel.FK_YslugiStrahSlysay_Yslugi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

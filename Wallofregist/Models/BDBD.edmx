@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище medstahModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IDClienta" />
+          </Key>
+          <Property Name="IDClienta" Type="int" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="DenRojdenia" Type="datetime" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumberPhone" Type="bigint" Nullable="false" />
+          <Property Name="Pochta" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lechenia">
+          <Key>
+            <PropertyRef Name="IDLechenia" />
+          </Key>
+          <Property Name="IDLechenia" Type="int" Nullable="false" />
+          <Property Name="IDStrahSlychai" Type="int" Nullable="false" />
+          <Property Name="IDYchresdenia" Type="int" Nullable="false" />
+          <Property Name="DataNachalaLechenia" Type="datetime" />
+          <Property Name="DateKoncaLechenia" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Oplati">
+          <Key>
+            <PropertyRef Name="IDOplati" />
+          </Key>
+          <Property Name="IDOplati" Type="int" Nullable="false" />
+          <Property Name="IDStatusOplati" Type="int" Nullable="false" />
+          <Property Name="IDOtcheta" Type="int" Nullable="false" />
+          <Property Name="SumOplati" Type="money" />
+          <Property Name="DataOplati" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Oslognenia">
+          <Key>
+            <PropertyRef Name="IDOslognenia" />
+          </Key>
+          <Property Name="IDOslognenia" Type="int" Nullable="false" />
+          <Property Name="IDLechenia" Type="int" Nullable="false" />
+          <Property Name="InforamtiaOslognenia" Type="nvarchar(max)" />
+          <Property Name="DataNachalaOslognenia" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Otcheta">
+          <Key>
+            <PropertyRef Name="IDOtcheta" />
+          </Key>
+          <Property Name="IDOtcheta" Type="int" Nullable="false" />
+          <Property Name="IDYslugi" Type="int" Nullable="false" />
+          <Property Name="DataNapicaniaOtcheta" Type="datetime" />
+          <Property Name="OpisanieOtcheta" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PolisStrahovania">
+          <Key>
+            <PropertyRef Name="IDPolisa" />
+          </Key>
+          <Property Name="IDPolisa" Type="int" Nullable="false" />
+          <Property Name="IDClienta" Type="int" Nullable="false" />
+          <Property Name="NumberPolis" Type="bigint" Nullable="false" />
+          <Property Name="DateNachalaDestvia" Type="datetime" />
+          <Property Name="DateKoncaDestvia" Type="datetime" />
+          <Property Name="StrahovaySumma" Type="money" Nullable="false" />
+          <Property Name="TipPolisa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Polzovateli">
+          <Key>
+            <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+          </Key>
+          <Property Name="IDPolzovateliaDlyaAvtorizacii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDRoli" Type="int" Nullable="false" />
+          <Property Name="Logini" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Paroli" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="IDRoli" />
+          </Key>
+          <Property Name="IDRoli" Type="int" Nullable="false" />
+          <Property Name="NazvanieRoli" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrydniki">
+          <Key>
+            <PropertyRef Name="IDSotrydnika" />
+          </Key>
+          <Property Name="IDSotrydnika" Type="int" Nullable="false" />
+          <Property Name="IDPolzovateliaDlyaAvtorizacii" Type="int" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="32" />
+          <Property Name="NumberPhone" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Pochta" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IDStatusa" />
+          </Key>
+          <Property Name="IDStatusa" Type="int" Nullable="false" />
+          <Property Name="StatusVipolnenia" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusOplati">
+          <Key>
+            <PropertyRef Name="IDStatusOplati" />
+          </Key>
+          <Property Name="IDStatusOplati" Type="int" Nullable="false" />
+          <Property Name="StatusOplati" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="StrahSlychai">
+          <Key>
+            <PropertyRef Name="IDStrahSlychai" />
+          </Key>
+          <Property Name="IDStrahSlychai" Type="int" Nullable="false" />
+          <Property Name="IDStatusa" Type="int" Nullable="false" />
+          <Property Name="IDPolisa" Type="int" Nullable="false" />
+          <Property Name="IDStatusOplati" Type="int" />
+          <Property Name="IDSotrydnika" Type="int" />
+          <Property Name="DataOtpravkiZayavki" Type="datetime" />
+          <Property Name="OpisanieStrahSlychai" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="YchresdeniaLecheia">
+          <Key>
+            <PropertyRef Name="IDYchresdenia" />
+          </Key>
+          <Property Name="IDYchresdenia" Type="int" Nullable="false" />
+          <Property Name="ImyaYcheresdenia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactnayInformacia" Type="nvarchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="Yslugi">
+          <Key>
+            <PropertyRef Name="IDYslugi" />
+          </Key>
+          <Property Name="IDYslugi" Type="int" Nullable="false" />
+          <Property Name="ImyaYslugi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CenaYslygi" Type="money" />
+        </EntityType>
+        <EntityType Name="YslugiStrahSlysay">
+          <Key>
+            <PropertyRef Name="IDStrahSlychai" />
+            <PropertyRef Name="IDYslugi" />
+          </Key>
+          <Property Name="IDYslugiStrahSlysay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDStrahSlychai" Type="int" Nullable="false" />
+          <Property Name="IDYslugi" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bygalteri_StatusOplati">
+          <End Role="StatusOplati" Type="Self.StatusOplati" Multiplicity="1" />
+          <End Role="Oplati" Type="Self.Oplati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Principal>
+            <Dependent Role="Oplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bygalteri_StrahSlychai">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="Oplati" Type="Self.Oplati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="Oplati">
+              <PropertyRef Name="IDOtcheta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otcheta_Yslugi">
+          <End Role="Yslugi" Type="Self.Yslugi" Multiplicity="1" />
+          <End Role="Otcheta" Type="Self.Otcheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yslugi">
+              <PropertyRef Name="IDYslugi" />
+            </Principal>
+            <Dependent Role="Otcheta">
+              <PropertyRef Name="IDYslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Polzovateli_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="1" />
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="IDRoli" />
+            </Principal>
+            <Dependent Role="Polzovateli">
+              <PropertyRef Name="IDRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Polzovateli">
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polzovateli">
+              <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_PolisStrahovania">
+          <End Role="PolisStrahovania" Type="Self.PolisStrahovania" Multiplicity="1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolisStrahovania">
+              <PropertyRef Name="IDPolisa" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDPolisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="0..1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="IDSotrydnika" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDSotrydnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IDStatusa" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDStatusa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_StatusOplati">
+          <End Role="StatusOplati" Type="Self.StatusOplati" Multiplicity="0..1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDStatusOplati" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YslugiStrahSlysay_StrahSlychai">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="YslugiStrahSlysay" Type="Self.YslugiStrahSlysay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="YslugiStrahSlysay">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YslugiStrahSlysay_Yslugi">
+          <End Role="Yslugi" Type="Self.Yslugi" Multiplicity="1" />
+          <End Role="YslugiStrahSlysay" Type="Self.YslugiStrahSlysay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yslugi">
+              <PropertyRef Name="IDYslugi" />
+            </Principal>
+            <Dependent Role="YslugiStrahSlysay">
+              <PropertyRef Name="IDYslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Лечение_Лечебные_Учреждения">
+          <End Role="YchresdeniaLecheia" Type="Self.YchresdeniaLecheia" Multiplicity="1" />
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YchresdeniaLecheia">
+              <PropertyRef Name="IDYchresdenia" />
+            </Principal>
+            <Dependent Role="Lechenia">
+              <PropertyRef Name="IDYchresdenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Лечение_Страховые_Случаи">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="Lechenia">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осложнения_Лечение">
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="1" />
+          <End Role="Oslognenia" Type="Self.Oslognenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lechenia">
+              <PropertyRef Name="IDLechenia" />
+            </Principal>
+            <Dependent Role="Oslognenia">
+              <PropertyRef Name="IDLechenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Полисы_Страхования_Клиенты">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="PolisStrahovania" Type="Self.PolisStrahovania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IDClienta" />
+            </Principal>
+            <Dependent Role="PolisStrahovania">
+              <PropertyRef Name="IDClienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище medstahModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lechenia" EntityType="Self.Lechenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oplati" EntityType="Self.Oplati" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oslognenia" EntityType="Self.Oslognenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otcheta" EntityType="Self.Otcheta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolisStrahovania" EntityType="Self.PolisStrahovania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polzovateli" EntityType="Self.Polzovateli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roli" EntityType="Self.Roli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrydniki" EntityType="Self.Sotrydniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOplati" EntityType="Self.StatusOplati" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StrahSlychai" EntityType="Self.StrahSlychai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YchresdeniaLecheia" EntityType="Self.YchresdeniaLecheia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yslugi" EntityType="Self.Yslugi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YslugiStrahSlysay" EntityType="Self.YslugiStrahSlysay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bygalteri_StatusOplati" Association="Self.FK_Bygalteri_StatusOplati">
+            <End Role="StatusOplati" EntitySet="StatusOplati" />
+            <End Role="Oplati" EntitySet="Oplati" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bygalteri_StrahSlychai" Association="Self.FK_Bygalteri_StrahSlychai">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="Oplati" EntitySet="Oplati" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otcheta_Yslugi" Association="Self.FK_Otcheta_Yslugi">
+            <End Role="Yslugi" EntitySet="Yslugi" />
+            <End Role="Otcheta" EntitySet="Otcheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Polzovateli_Roli" Association="Self.FK_Polzovateli_Roli">
+            <End Role="Roli" EntitySet="Roli" />
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Polzovateli" Association="Self.FK_Sotrydniki_Polzovateli">
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_PolisStrahovania" Association="Self.FK_StrahSlychai_PolisStrahovania">
+            <End Role="PolisStrahovania" EntitySet="PolisStrahovania" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_Sotrydniki" Association="Self.FK_StrahSlychai_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_Status" Association="Self.FK_StrahSlychai_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_StatusOplati" Association="Self.FK_StrahSlychai_StatusOplati">
+            <End Role="StatusOplati" EntitySet="StatusOplati" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YslugiStrahSlysay_StrahSlychai" Association="Self.FK_YslugiStrahSlysay_StrahSlychai">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="YslugiStrahSlysay" EntitySet="YslugiStrahSlysay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YslugiStrahSlysay_Yslugi" Association="Self.FK_YslugiStrahSlysay_Yslugi">
+            <End Role="Yslugi" EntitySet="Yslugi" />
+            <End Role="YslugiStrahSlysay" EntitySet="YslugiStrahSlysay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Лечение_Лечебные_Учреждения" Association="Self.FK_Лечение_Лечебные_Учреждения">
+            <End Role="YchresdeniaLecheia" EntitySet="YchresdeniaLecheia" />
+            <End Role="Lechenia" EntitySet="Lechenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Лечение_Страховые_Случаи" Association="Self.FK_Лечение_Страховые_Случаи">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="Lechenia" EntitySet="Lechenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осложнения_Лечение" Association="Self.FK_Осложнения_Лечение">
+            <End Role="Lechenia" EntitySet="Lechenia" />
+            <End Role="Oslognenia" EntitySet="Oslognenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Полисы_Страхования_Клиенты" Association="Self.FK_Полисы_Страхования_Клиенты">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PolisStrahovania" EntitySet="PolisStrahovania" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="medstahModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IDClienta" />
+          </Key>
+          <Property Name="IDClienta" Type="Int32" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DenRojdenia" Type="DateTime" Precision="3" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="Int64" Nullable="false" />
+          <Property Name="Pochta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PolisStrahovania" Relationship="Self.FK_Полисы_Страхования_Клиенты" FromRole="Client" ToRole="PolisStrahovania" />
+        </EntityType>
+        <EntityType Name="Lechenia">
+          <Key>
+            <PropertyRef Name="IDLechenia" />
+          </Key>
+          <Property Name="IDLechenia" Type="Int32" Nullable="false" />
+          <Property Name="IDStrahSlychai" Type="Int32" Nullable="false" />
+          <Property Name="IDYchresdenia" Type="Int32" Nullable="false" />
+          <Property Name="DataNachalaLechenia" Type="DateTime" Precision="3" />
+          <Property Name="DateKoncaLechenia" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="YchresdeniaLecheia" Relationship="Self.FK_Лечение_Лечебные_Учреждения" FromRole="Lechenia" ToRole="YchresdeniaLecheia" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_Лечение_Страховые_Случаи" FromRole="Lechenia" ToRole="StrahSlychai" />
+          <NavigationProperty Name="Oslognenia" Relationship="Self.FK_Осложнения_Лечение" FromRole="Lechenia" ToRole="Oslognenia" />
+        </EntityType>
+        <EntityType Name="Oplati">
+          <Key>
+            <PropertyRef Name="IDOplati" />
+          </Key>
+          <Property Name="IDOplati" Type="Int32" Nullable="false" />
+          <Property Name="IDStatusOplati" Type="Int32" Nullable="false" />
+          <Property Name="IDOtcheta" Type="Int32" Nullable="false" />
+          <Property Name="SumOplati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DataOplati" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="StatusOplati" Relationship="Self.FK_Bygalteri_StatusOplati" FromRole="Oplati" ToRole="StatusOplati" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_Bygalteri_StrahSlychai" FromRole="Oplati" ToRole="StrahSlychai" />
+        </EntityType>
+        <EntityType Name="Oslognenia">
+          <Key>
+            <PropertyRef Name="IDOslognenia" />
+          </Key>
+          <Property Name="IDOslognenia" Type="Int32" Nullable="false" />
+          <Property Name="IDLechenia" Type="Int32" Nullable="false" />
+          <Property Name="InforamtiaOslognenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataNachalaOslognenia" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lechenia" Relationship="Self.FK_Осложнения_Лечение" FromRole="Oslognenia" ToRole="Lechenia" />
+        </EntityType>
+        <EntityType Name="Otcheta">
+          <Key>
+            <PropertyRef Name="IDOtcheta" />
+          </Key>
+          <Property Name="IDOtcheta" Type="Int32" Nullable="false" />
+          <Property Name="IDYslugi" Type="Int32" Nullable="false" />
+          <Property Name="DataNapicaniaOtcheta" Type="DateTime" Precision="3" />
+          <Property Name="OpisanieOtcheta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Yslugi" Relationship="Self.FK_Otcheta_Yslugi" FromRole="Otcheta" ToRole="Yslugi" />
+        </EntityType>
+        <EntityType Name="PolisStrahovania">
+          <Key>
+            <PropertyRef Name="IDPolisa" />
+          </Key>
+          <Property Name="IDPolisa" Type="Int32" Nullable="false" />
+          <Property Name="IDClienta" Type="Int32" Nullable="false" />
+          <Property Name="NumberPolis" Type="Int64" Nullable="false" />
+          <Property Name="DateNachalaDestvia" Type="DateTime" Precision="3" />
+          <Property Name="DateKoncaDestvia" Type="DateTime" Precision="3" />
+          <Property Name="StrahovaySumma" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TipPolisa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Полисы_Страхования_Клиенты" FromRole="PolisStrahovania" ToRole="Client" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_StrahSlychai_PolisStrahovania" FromRole="PolisStrahovania" ToRole="StrahSlychai" />
+        </EntityType>
+        <EntityType Name="Polzovateli">
+          <Key>
+            <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+          </Key>
+          <Property Name="IDPolzovateliaDlyaAvtorizacii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDRoli" Type="Int32" Nullable="false" />
+          <Property Name="Logini" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Paroli" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Roli" Relationship="Self.FK_Polzovateli_Roli" FromRole="Polzovateli" ToRole="Roli" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_Sotrydniki_Polzovateli" FromRole="Polzovateli" ToRole="Sotrydniki" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="IDRoli" />
+          </Key>
+          <Property Name="IDRoli" Type="Int32" Nullable="false" />
+          <Property Name="NazvanieRoli" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Polzovateli" Relationship="Self.FK_Polzovateli_Roli" FromRole="Roli" ToRole="Polzovateli" />
+        </EntityType>
+        <EntityType Name="Sotrydniki">
+          <Key>
+            <PropertyRef Name="IDSotrydnika" />
+          </Key>
+          <Property Name="IDSotrydnika" Type="Int32" Nullable="false" />
+          <Property Name="IDPolzovateliaDlyaAvtorizacii" Type="Int32" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pochta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Polzovateli" Relationship="Self.FK_Sotrydniki_Polzovateli" FromRole="Sotrydniki" ToRole="Polzovateli" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_StrahSlychai_Sotrydniki" FromRole="Sotrydniki" ToRole="StrahSlychai" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IDStatusa" />
+          </Key>
+          <Property Name="IDStatusa" Type="Int32" Nullable="false" />
+          <Property Name="StatusVipolnenia" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_StrahSlychai_Status" FromRole="Status" ToRole="StrahSlychai" />
+        </EntityType>
+        <EntityType Name="StatusOplati">
+          <Key>
+            <PropertyRef Name="IDStatusOplati" />
+          </Key>
+          <Property Name="IDStatusOplati" Type="Int32" Nullable="false" />
+          <Property Name="StatusOplati1" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Oplati" Relationship="Self.FK_Bygalteri_StatusOplati" FromRole="StatusOplati" ToRole="Oplati" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_StrahSlychai_StatusOplati" FromRole="StatusOplati" ToRole="StrahSlychai" />
+        </EntityType>
+        <EntityType Name="StrahSlychai">
+          <Key>
+            <PropertyRef Name="IDStrahSlychai" />
+          </Key>
+          <Property Name="IDStrahSlychai" Type="Int32" Nullable="false" />
+          <Property Name="IDStatusa" Type="Int32" Nullable="false" />
+          <Property Name="IDPolisa" Type="Int32" Nullable="false" />
+          <Property Name="IDStatusOplati" Type="Int32" />
+          <Property Name="IDSotrydnika" Type="Int32" />
+          <Property Name="DataOtpravkiZayavki" Type="DateTime" Precision="3" />
+          <Property Name="OpisanieStrahSlychai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lechenia" Relationship="Self.FK_Лечение_Страховые_Случаи" FromRole="StrahSlychai" ToRole="Lechenia" />
+          <NavigationProperty Name="Oplati" Relationship="Self.FK_Bygalteri_StrahSlychai" FromRole="StrahSlychai" ToRole="Oplati" />
+          <NavigationProperty Name="PolisStrahovania" Relationship="Self.FK_StrahSlychai_PolisStrahovania" FromRole="StrahSlychai" ToRole="PolisStrahovania" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_StrahSlychai_Sotrydniki" FromRole="StrahSlychai" ToRole="Sotrydniki" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_StrahSlychai_Status" FromRole="StrahSlychai" ToRole="Status" />
+          <NavigationProperty Name="StatusOplati" Relationship="Self.FK_StrahSlychai_StatusOplati" FromRole="StrahSlychai" ToRole="StatusOplati" />
+          <NavigationProperty Name="YslugiStrahSlysay" Relationship="Self.FK_YslugiStrahSlysay_StrahSlychai" FromRole="StrahSlychai" ToRole="YslugiStrahSlysay" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="YchresdeniaLecheia">
+          <Key>
+            <PropertyRef Name="IDYchresdenia" />
+          </Key>
+          <Property Name="IDYchresdenia" Type="Int32" Nullable="false" />
+          <Property Name="ImyaYcheresdenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactnayInformacia" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lechenia" Relationship="Self.FK_Лечение_Лечебные_Учреждения" FromRole="YchresdeniaLecheia" ToRole="Lechenia" />
+        </EntityType>
+        <EntityType Name="Yslugi">
+          <Key>
+            <PropertyRef Name="IDYslugi" />
+          </Key>
+          <Property Name="IDYslugi" Type="Int32" Nullable="false" />
+          <Property Name="ImyaYslugi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CenaYslygi" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Otcheta" Relationship="Self.FK_Otcheta_Yslugi" FromRole="Yslugi" ToRole="Otcheta" />
+          <NavigationProperty Name="YslugiStrahSlysay" Relationship="Self.FK_YslugiStrahSlysay_Yslugi" FromRole="Yslugi" ToRole="YslugiStrahSlysay" />
+        </EntityType>
+        <EntityType Name="YslugiStrahSlysay">
+          <Key>
+            <PropertyRef Name="IDStrahSlychai" />
+            <PropertyRef Name="IDYslugi" />
+          </Key>
+          <Property Name="IDYslugiStrahSlysay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDStrahSlychai" Type="Int32" Nullable="false" />
+          <Property Name="IDYslugi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StrahSlychai" Relationship="Self.FK_YslugiStrahSlysay_StrahSlychai" FromRole="YslugiStrahSlysay" ToRole="StrahSlychai" />
+          <NavigationProperty Name="Yslugi" Relationship="Self.FK_YslugiStrahSlysay_Yslugi" FromRole="YslugiStrahSlysay" ToRole="Yslugi" />
+        </EntityType>
+        <Association Name="FK_Полисы_Страхования_Клиенты">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="PolisStrahovania" Type="Self.PolisStrahovania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IDClienta" />
+            </Principal>
+            <Dependent Role="PolisStrahovania">
+              <PropertyRef Name="IDClienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Лечение_Лечебные_Учреждения">
+          <End Role="YchresdeniaLecheia" Type="Self.YchresdeniaLecheia" Multiplicity="1" />
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YchresdeniaLecheia">
+              <PropertyRef Name="IDYchresdenia" />
+            </Principal>
+            <Dependent Role="Lechenia">
+              <PropertyRef Name="IDYchresdenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Лечение_Страховые_Случаи">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="Lechenia">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осложнения_Лечение">
+          <End Role="Lechenia" Type="Self.Lechenia" Multiplicity="1" />
+          <End Role="Oslognenia" Type="Self.Oslognenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lechenia">
+              <PropertyRef Name="IDLechenia" />
+            </Principal>
+            <Dependent Role="Oslognenia">
+              <PropertyRef Name="IDLechenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bygalteri_StatusOplati">
+          <End Role="StatusOplati" Type="Self.StatusOplati" Multiplicity="1" />
+          <End Role="Oplati" Type="Self.Oplati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Principal>
+            <Dependent Role="Oplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bygalteri_StrahSlychai">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="Oplati" Type="Self.Oplati" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="Oplati">
+              <PropertyRef Name="IDOtcheta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otcheta_Yslugi">
+          <End Role="Yslugi" Type="Self.Yslugi" Multiplicity="1" />
+          <End Role="Otcheta" Type="Self.Otcheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yslugi">
+              <PropertyRef Name="IDYslugi" />
+            </Principal>
+            <Dependent Role="Otcheta">
+              <PropertyRef Name="IDYslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_PolisStrahovania">
+          <End Role="PolisStrahovania" Type="Self.PolisStrahovania" Multiplicity="1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolisStrahovania">
+              <PropertyRef Name="IDPolisa" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDPolisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Polzovateli_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="1" />
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="IDRoli" />
+            </Principal>
+            <Dependent Role="Polzovateli">
+              <PropertyRef Name="IDRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Polzovateli">
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polzovateli">
+              <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="IDPolzovateliaDlyaAvtorizacii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="0..1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="IDSotrydnika" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDSotrydnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IDStatusa" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDStatusa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StrahSlychai_StatusOplati">
+          <End Role="StatusOplati" Type="Self.StatusOplati" Multiplicity="0..1" />
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOplati">
+              <PropertyRef Name="IDStatusOplati" />
+            </Principal>
+            <Dependent Role="StrahSlychai">
+              <PropertyRef Name="IDStatusOplati" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YslugiStrahSlysay_StrahSlychai">
+          <End Role="StrahSlychai" Type="Self.StrahSlychai" Multiplicity="1" />
+          <End Role="YslugiStrahSlysay" Type="Self.YslugiStrahSlysay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StrahSlychai">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Principal>
+            <Dependent Role="YslugiStrahSlysay">
+              <PropertyRef Name="IDStrahSlychai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YslugiStrahSlysay_Yslugi">
+          <End Role="Yslugi" Type="Self.Yslugi" Multiplicity="1" />
+          <End Role="YslugiStrahSlysay" Type="Self.YslugiStrahSlysay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yslugi">
+              <PropertyRef Name="IDYslugi" />
+            </Principal>
+            <Dependent Role="YslugiStrahSlysay">
+              <PropertyRef Name="IDYslugi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDRegist" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Lechenia" EntityType="Self.Lechenia" />
+          <EntitySet Name="Oplati" EntityType="Self.Oplati" />
+          <EntitySet Name="Oslognenia" EntityType="Self.Oslognenia" />
+          <EntitySet Name="Otcheta" EntityType="Self.Otcheta" />
+          <EntitySet Name="PolisStrahovania" EntityType="Self.PolisStrahovania" />
+          <EntitySet Name="Polzovateli" EntityType="Self.Polzovateli" />
+          <EntitySet Name="Roli" EntityType="Self.Roli" />
+          <EntitySet Name="Sotrydniki" EntityType="Self.Sotrydniki" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="StatusOplati" EntityType="Self.StatusOplati" />
+          <EntitySet Name="StrahSlychai" EntityType="Self.StrahSlychai" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="YchresdeniaLecheia" EntityType="Self.YchresdeniaLecheia" />
+          <EntitySet Name="Yslugi" EntityType="Self.Yslugi" />
+          <EntitySet Name="YslugiStrahSlysay" EntityType="Self.YslugiStrahSlysay" />
+          <AssociationSet Name="FK_Полисы_Страхования_Клиенты" Association="Self.FK_Полисы_Страхования_Клиенты">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PolisStrahovania" EntitySet="PolisStrahovania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Лечение_Лечебные_Учреждения" Association="Self.FK_Лечение_Лечебные_Учреждения">
+            <End Role="YchresdeniaLecheia" EntitySet="YchresdeniaLecheia" />
+            <End Role="Lechenia" EntitySet="Lechenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Лечение_Страховые_Случаи" Association="Self.FK_Лечение_Страховые_Случаи">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="Lechenia" EntitySet="Lechenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осложнения_Лечение" Association="Self.FK_Осложнения_Лечение">
+            <End Role="Lechenia" EntitySet="Lechenia" />
+            <End Role="Oslognenia" EntitySet="Oslognenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bygalteri_StatusOplati" Association="Self.FK_Bygalteri_StatusOplati">
+            <End Role="StatusOplati" EntitySet="StatusOplati" />
+            <End Role="Oplati" EntitySet="Oplati" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bygalteri_StrahSlychai" Association="Self.FK_Bygalteri_StrahSlychai">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="Oplati" EntitySet="Oplati" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otcheta_Yslugi" Association="Self.FK_Otcheta_Yslugi">
+            <End Role="Yslugi" EntitySet="Yslugi" />
+            <End Role="Otcheta" EntitySet="Otcheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_PolisStrahovania" Association="Self.FK_StrahSlychai_PolisStrahovania">
+            <End Role="PolisStrahovania" EntitySet="PolisStrahovania" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Polzovateli_Roli" Association="Self.FK_Polzovateli_Roli">
+            <End Role="Roli" EntitySet="Roli" />
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Polzovateli" Association="Self.FK_Sotrydniki_Polzovateli">
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_Sotrydniki" Association="Self.FK_StrahSlychai_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_Status" Association="Self.FK_StrahSlychai_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StrahSlychai_StatusOplati" Association="Self.FK_StrahSlychai_StatusOplati">
+            <End Role="StatusOplati" EntitySet="StatusOplati" />
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YslugiStrahSlysay_StrahSlychai" Association="Self.FK_YslugiStrahSlysay_StrahSlychai">
+            <End Role="StrahSlychai" EntitySet="StrahSlychai" />
+            <End Role="YslugiStrahSlysay" EntitySet="YslugiStrahSlysay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YslugiStrahSlysay_Yslugi" Association="Self.FK_YslugiStrahSlysay_Yslugi">
+            <End Role="Yslugi" EntitySet="Yslugi" />
+            <End Role="YslugiStrahSlysay" EntitySet="YslugiStrahSlysay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище medstahModelContainer" CdmEntityContainer="BDRegist">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="medstahModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IDClienta" ColumnName="IDClienta" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="DenRojdenia" ColumnName="DenRojdenia" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="Pochta" ColumnName="Pochta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lechenia">
+            <EntityTypeMapping TypeName="medstahModel.Lechenia">
+              <MappingFragment StoreEntitySet="Lechenia">
+                <ScalarProperty Name="IDLechenia" ColumnName="IDLechenia" />
+                <ScalarProperty Name="IDStrahSlychai" ColumnName="IDStrahSlychai" />
+                <ScalarProperty Name="IDYchresdenia" ColumnName="IDYchresdenia" />
+                <ScalarProperty Name="DataNachalaLechenia" ColumnName="DataNachalaLechenia" />
+                <ScalarProperty Name="DateKoncaLechenia" ColumnName="DateKoncaLechenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oplati">
+            <EntityTypeMapping TypeName="medstahModel.Oplati">
+              <MappingFragment StoreEntitySet="Oplati">
+                <ScalarProperty Name="IDOplati" ColumnName="IDOplati" />
+                <ScalarProperty Name="IDStatusOplati" ColumnName="IDStatusOplati" />
+                <ScalarProperty Name="IDOtcheta" ColumnName="IDOtcheta" />
+                <ScalarProperty Name="SumOplati" ColumnName="SumOplati" />
+                <ScalarProperty Name="DataOplati" ColumnName="DataOplati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oslognenia">
+            <EntityTypeMapping TypeName="medstahModel.Oslognenia">
+              <MappingFragment StoreEntitySet="Oslognenia">
+                <ScalarProperty Name="IDOslognenia" ColumnName="IDOslognenia" />
+                <ScalarProperty Name="IDLechenia" ColumnName="IDLechenia" />
+                <ScalarProperty Name="InforamtiaOslognenia" ColumnName="InforamtiaOslognenia" />
+                <ScalarProperty Name="DataNachalaOslognenia" ColumnName="DataNachalaOslognenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otcheta">
+            <EntityTypeMapping TypeName="medstahModel.Otcheta">
+              <MappingFragment StoreEntitySet="Otcheta">
+                <ScalarProperty Name="IDOtcheta" ColumnName="IDOtcheta" />
+                <ScalarProperty Name="IDYslugi" ColumnName="IDYslugi" />
+                <ScalarProperty Name="DataNapicaniaOtcheta" ColumnName="DataNapicaniaOtcheta" />
+                <ScalarProperty Name="OpisanieOtcheta" ColumnName="OpisanieOtcheta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolisStrahovania">
+            <EntityTypeMapping TypeName="medstahModel.PolisStrahovania">
+              <MappingFragment StoreEntitySet="PolisStrahovania">
+                <ScalarProperty Name="IDPolisa" ColumnName="IDPolisa" />
+                <ScalarProperty Name="IDClienta" ColumnName="IDClienta" />
+                <ScalarProperty Name="NumberPolis" ColumnName="NumberPolis" />
+                <ScalarProperty Name="DateNachalaDestvia" ColumnName="DateNachalaDestvia" />
+                <ScalarProperty Name="DateKoncaDestvia" ColumnName="DateKoncaDestvia" />
+                <ScalarProperty Name="StrahovaySumma" ColumnName="StrahovaySumma" />
+                <ScalarProperty Name="TipPolisa" ColumnName="TipPolisa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polzovateli">
+            <EntityTypeMapping TypeName="medstahModel.Polzovateli">
+              <MappingFragment StoreEntitySet="Polzovateli">
+                <ScalarProperty Name="IDPolzovateliaDlyaAvtorizacii" ColumnName="IDPolzovateliaDlyaAvtorizacii" />
+                <ScalarProperty Name="IDRoli" ColumnName="IDRoli" />
+                <ScalarProperty Name="Logini" ColumnName="Logini" />
+                <ScalarProperty Name="Paroli" ColumnName="Paroli" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roli">
+            <EntityTypeMapping TypeName="medstahModel.Roli">
+              <MappingFragment StoreEntitySet="Roli">
+                <ScalarProperty Name="IDRoli" ColumnName="IDRoli" />
+                <ScalarProperty Name="NazvanieRoli" ColumnName="NazvanieRoli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrydniki">
+            <EntityTypeMapping TypeName="medstahModel.Sotrydniki">
+              <MappingFragment StoreEntitySet="Sotrydniki">
+                <ScalarProperty Name="IDSotrydnika" ColumnName="IDSotrydnika" />
+                <ScalarProperty Name="IDPolzovateliaDlyaAvtorizacii" ColumnName="IDPolzovateliaDlyaAvtorizacii" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="Pochta" ColumnName="Pochta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="medstahModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="IDStatusa" ColumnName="IDStatusa" />
+                <ScalarProperty Name="StatusVipolnenia" ColumnName="StatusVipolnenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOplati">
+            <EntityTypeMapping TypeName="medstahModel.StatusOplati">
+              <MappingFragment StoreEntitySet="StatusOplati">
+                <ScalarProperty Name="IDStatusOplati" ColumnName="IDStatusOplati" />
+                <ScalarProperty Name="StatusOplati1" ColumnName="StatusOplati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StrahSlychai">
+            <EntityTypeMapping TypeName="medstahModel.StrahSlychai">
+              <MappingFragment StoreEntitySet="StrahSlychai">
+                <ScalarProperty Name="IDStrahSlychai" ColumnName="IDStrahSlychai" />
+                <ScalarProperty Name="IDStatusa" ColumnName="IDStatusa" />
+                <ScalarProperty Name="IDPolisa" ColumnName="IDPolisa" />
+                <ScalarProperty Name="IDStatusOplati" ColumnName="IDStatusOplati" />
+                <ScalarProperty Name="IDSotrydnika" ColumnName="IDSotrydnika" />
+                <ScalarProperty Name="DataOtpravkiZayavki" ColumnName="DataOtpravkiZayavki" />
+                <ScalarProperty Name="OpisanieStrahSlychai" ColumnName="OpisanieStrahSlychai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="medstahModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YchresdeniaLecheia">
+            <EntityTypeMapping TypeName="medstahModel.YchresdeniaLecheia">
+              <MappingFragment StoreEntitySet="YchresdeniaLecheia">
+                <ScalarProperty Name="IDYchresdenia" ColumnName="IDYchresdenia" />
+                <ScalarProperty Name="ImyaYcheresdenia" ColumnName="ImyaYcheresdenia" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="ContactnayInformacia" ColumnName="ContactnayInformacia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yslugi">
+            <EntityTypeMapping TypeName="medstahModel.Yslugi">
+              <MappingFragment StoreEntitySet="Yslugi">
+                <ScalarProperty Name="IDYslugi" ColumnName="IDYslugi" />
+                <ScalarProperty Name="ImyaYslugi" ColumnName="ImyaYslugi" />
+                <ScalarProperty Name="CenaYslygi" ColumnName="CenaYslygi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YslugiStrahSlysay">
+            <EntityTypeMapping TypeName="medstahModel.YslugiStrahSlysay">
+              <MappingFragment StoreEntitySet="YslugiStrahSlysay">
+                <ScalarProperty Name="IDYslugiStrahSlysay" ColumnName="IDYslugiStrahSlysay" />
+                <ScalarProperty Name="IDStrahSlychai" ColumnName="IDStrahSlychai" />
+                <ScalarProperty Name="IDYslugi" ColumnName="IDYslugi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

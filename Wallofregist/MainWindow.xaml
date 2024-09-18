@@ -1,0 +1,27 @@
+﻿<Window x:Class="Wallofregist.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wallofregist"
+        mc:Ignorable="d"
+        
+        Title="Стартова страница" Height="450" Width="800" Icon="/Resources/The_Witcher_3_Wild_Hunt.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF76E383" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="713*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="btnBack" HorizontalAlignment="Right" Content="Назад" Click="btnBack_Click" Grid.Column="1" />
+            <Image Width="45" Height="45" HorizontalAlignment="Left" Margin="5" Source="/Resources/the_witcher_3_icon_by_s7_by_sidyseven-d693kup.png"/>
+        </Grid>
+        <Frame x:Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="FrmMain_ContentRendered"/>
+    </Grid>
+</Window>
